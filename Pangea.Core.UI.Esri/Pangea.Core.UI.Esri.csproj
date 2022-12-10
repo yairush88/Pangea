@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pangea.Core.UI\Pangea.Core.UI.csproj" />
+    <ProjectReference Include="..\Pangea.Core\Pangea.Core.csproj" />
+  </ItemGroup>
+
+</Project>

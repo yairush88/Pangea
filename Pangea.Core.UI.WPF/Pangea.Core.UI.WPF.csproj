@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Pangea.Core.UI\Pangea.Core.UI.csproj" />
+	  <ProjectReference Include="..\Pangea.Core\Pangea.Core.csproj" />
+	</ItemGroup>
+
+</Project>

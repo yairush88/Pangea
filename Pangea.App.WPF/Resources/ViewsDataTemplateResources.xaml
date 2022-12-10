@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewModels="clr-namespace:Pangea.App.ViewModels;assembly=Pangea.App.ViewModels"
+                    xmlns:local="clr-namespace:Pangea.App.WPF"
+                    xmlns:views="clr-namespace:Pangea.App.WPF.Views">
+
+    <DataTemplate DataType="{x:Type viewModels:ShellVM}">
+        <local:ShellView DataContext="{Binding}" />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type viewModels:MainWindowVM}">
+        <views:MainWindowView DataContext="{Binding}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:MapVM}">
+        <views:MapView DataContext="{Binding}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:MessagesVM}">
+        <views:MessagesView DataContext="{Binding}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:SceneVM}">
+        <views:SceneView DataContext="{Binding}" />
+    </DataTemplate>
+
+</ResourceDictionary>
