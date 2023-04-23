@@ -23,8 +23,6 @@
             <Button Grid.Row="0" Content="Remove Selected" Width="100" Margin="5" Command="{Binding Path=RemoveSelectedEntitiesCommand}" />
         </StackPanel>
         
-        <esri:MapView x:Name="mapView" Grid.Row="1" Map="{Binding Map.Map}" GraphicsOverlays="{Binding Path=Map.GraphicsOverlays}" 
-                      GeoViewTapped="MapView_GeoViewTapped"
-                      />
+        <esri:MapView x:Name="mapView" Grid.Row="1" Map="{Binding Map.Map}" GraphicsOverlays="{Binding Path=Map.GraphicsOverlays}" />
     </Grid>
 </UserControl>

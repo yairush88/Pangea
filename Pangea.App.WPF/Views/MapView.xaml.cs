@@ -11,6 +11,7 @@ namespace Pangea.App.WPF.Views
         {
             InitializeComponent();
             mapView.Loaded += MapView_Loaded;
+            mapView.GeoViewTapped += MapView_GeoViewTapped;
         }
 
         private void MapView_Loaded(object sender, System.Windows.RoutedEventArgs e)

@@ -52,7 +52,7 @@ namespace Pangea.App.ViewModels
         {
             Map.SetMapView(mapView);
             
-            await Map.LoadMap(new Uri("C:\\Dev\\Pangea\\Pangea.Adapters.Esri\\Resources\\Maps\\map.tpk"));
+            await Map.LoadMap(new Uri(@"C:\Dev\Maps\map.tpk"));
             await Map.SetViewpoint(_viewpoint.Latitude, _viewpoint.Longitude, 100000);
 
             TestMap();
@@ -62,18 +62,18 @@ namespace Pangea.App.ViewModels
         {
             var p = new GeoLocation(_viewpoint);
 
-            //// Polyline
-            //var mapPoints = new List<GeoLocation>
-            //{
-            //    new GeoLocation(p.Latitude, p.Longitude),
-            //    new GeoLocation(p.Latitude += 0.01, p.Longitude -= 0.05),
-            //    new GeoLocation(p.Latitude -= 0.05, p.Longitude -= 0.05),
-            //    new GeoLocation(p.Latitude += 0.05, p.Longitude -= 0.02),
-            //    new GeoLocation(p.Latitude += 0.03, p.Longitude += 0.05),
-            //    new GeoLocation(p.Latitude += 0.05, p.Longitude -= 0.02),
-            //};
+            // Polyline
+            var mapPoints = new List<GeoLocation>
+            {
+                new GeoLocation(p.Latitude, p.Longitude),
+                new GeoLocation(p.Latitude += 0.01, p.Longitude -= 0.05),
+                new GeoLocation(p.Latitude -= 0.05, p.Longitude -= 0.05),
+                new GeoLocation(p.Latitude += 0.05, p.Longitude -= 0.02),
+                new GeoLocation(p.Latitude += 0.03, p.Longitude += 0.05),
+                new GeoLocation(p.Latitude += 0.05, p.Longitude -= 0.02),
+            };
 
-            //Map.AddPolyline("pline1", mapPoints);
+            Map.AddPolyline("pline1", mapPoints);
 
             //// Polygon
             //mapPoints = new List<GeoLocation>
@@ -108,7 +108,7 @@ namespace Pangea.App.ViewModels
                     IsSelectable= true,
                     Source = imageSource,
                     Location = p,
-                    Angle = 30,
+                    Angle = 45,
                     Width = 50,
                     Height = 50,
                 },
@@ -118,7 +118,7 @@ namespace Pangea.App.ViewModels
                     IsSelectable= false,
                     Source = imageSource,
                     //Location = new GeoLocation(p.Latitude - 0.01, p.Longitude - 0.01),
-                    Angle = 30,
+                    Angle = 180,
                     Width = 50,
                     Height = 50,
                     OffsetX = 100,
@@ -130,7 +130,7 @@ namespace Pangea.App.ViewModels
                     IsSelectable= false,
                     Source = imageSource,
                     //Location = new GeoLocation(p.Latitude - 0.01, p.Longitude + 0.01),
-                    Angle = 30,
+                    Angle = 350,
                     Width = 50,
                     Height = 50,
                     OffsetX = -100,
@@ -143,7 +143,7 @@ namespace Pangea.App.ViewModels
 
         private void OnStartSketch()
         {
-            Map.StartSketch(SketchMode.Triangle);
+            Map.StartSketch(SketchMode.Polyline);
         }
 
         private void OnEditSketch()

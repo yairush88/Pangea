@@ -98,7 +98,7 @@ namespace Pangea.Adapters.Esri
             //Map = new Map(new Basemap(layer));
 
             // For testing with online maps, remove later...
-            Map = new Map(BasemapStyle.ArcGISTopographic);
+            Map = new Map(BasemapStyle.ArcGISTopographic) { ReferenceScale = 10000 };
         }
 
         public async Task SetViewpoint(double latitude, double longitude, double scale)
@@ -108,8 +108,8 @@ namespace Pangea.Adapters.Esri
 
         public void AddPolyline(string Id, IEnumerable<GeoLocation> points)
         {
-            var polygon = new Polyline(GetMapPoints(points));
-            var graphic = new Graphic(polygon, CreateAttributes(Id), _simpleLineSymbol);
+            var polyline = new Polyline(GetMapPoints(points));
+            var graphic = new Graphic(polyline, CreateAttributes(Id), _simpleLineSymbol);
             _mainOverlay.Graphics.Add(graphic);
         }
 
@@ -150,8 +150,31 @@ namespace Pangea.Adapters.Esri
                 compositeSymbol.Symbols.Add(symbol);
             }
 
+            TextSymbol textSymbol = new TextSymbol("Yair", Color.White, 16, HorizontalAlignment.Center, VerticalAlignment.Middle)
+            {
+                BackgroundColor = Color.Transparent,
+                FontWeight = FontWeight.Bold,
+                OutlineColor = Color.Black,
+                OutlineWidth = 1,
+                OffsetX = 30,
+            };
+
+            compositeSymbol.Symbols.Add(textSymbol);
             AddEntityToOverlay(parentEntity, compositeSymbol);
         }
+
+        //public void AddEntityGroup(MapEntityGroup entityGroup)
+        //{
+        //    var parentEntity = entityGroup.Entities.FirstOrDefault(x => x.IsParent);
+        //    var compositeSymbol = new CompositeSymbol();
+        //    foreach (var entity in entityGroup.Entities)
+        //    {
+        //        var symbol = CreatePictureMarkerSymbol(entity);
+        //        compositeSymbol.Symbols.Add(symbol);
+        //    }
+
+        //    AddEntityToOverlay(parentEntity, compositeSymbol);
+        //}
 
         public void AddEntity(MapEntity entity)
         {
@@ -303,7 +326,7 @@ namespace Pangea.Adapters.Esri
             {
                 var geometry = GeometryEngine.Project(graphic.Geometry, SpatialReferences.WebMercator);
                 var config = new SketchEditConfiguration { RequireSelectionBeforeDrag = false, AllowMove = true };
-                
+
                 _isMovingGraphic = true;
                 // Let the user make changes to the graphic's geometry, await the result (updated geometry).
                 var newGeometry = await SketchEditor.StartAsync(geometry, SketchCreationMode.Point, config);
@@ -377,7 +400,7 @@ namespace Pangea.Adapters.Esri
                 SketchEditor.CompleteCommand.Execute(null);
             }
 
-            _mainOverlay.ClearSelection();
+            //_mainOverlay.ClearSelection();
         }
 
         public void CancelSketch()
